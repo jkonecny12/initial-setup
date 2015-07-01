@@ -49,6 +49,20 @@ class EULAspoke(FirstbootOnlySpokeMixIn, NormalTUISpoke):
             self._window += [TextWidget(_("No license found. Please report this "
                                           "at http://bugzilla.redhat.com")), ""]
 
+    def prompt(self, args=None):
+        """Return the default prompt with appended option number.
+        It's more intuitive for the user.
+
+        :param args: optional argument passed from switch_screen calls
+        :type args: anything
+
+        :return: returns text to be shown next to the prompt for input or None
+                 to skip further input processing
+        :rtype: str|None
+        """
+        return _(u"  Please make your choice from above [ '1' to read license | 'q' to quit |\n"
+                  "  'c' to continue | 'r' to refresh]: ")
+
     @property
     def completed(self):
         # Either there is no EULA available, or user agrees/disagrees with it.
